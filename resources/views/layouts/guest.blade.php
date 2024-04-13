@@ -17,7 +17,7 @@
 
 {{--@include('layouts.parts.header')--}}
 
-<main class=" w-full px-5 flex flex-grow bg-purple-500">
+<main class=" w-full px-5 flex flex-grow bg-purple-600">
     {{$slot}}
 </main>
 

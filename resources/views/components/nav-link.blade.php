@@ -1,11 +1,15 @@
-@props(['active'])
+@props(['active','type' => 'link'])
 
 @php
-$classes = ($active ?? false)
-            ? 'inline-flex items-center px-1 pt-1 border-b-2 border-indigo-400 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out'
-            : 'inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out';
+    $classes = ($active ?? false)
+               ? 'inline-flex items-center text-sm bg-purple-500 text-white px-3 py-1 rounded-full transition-colors duration-300 ease-in-out font-bold'
+               : 'inline-flex items-center hover:text-purple-500 text-md text-gray-500 px-3 py-1 rounded-md transition-colors duration-300 ease-in-out font-bold';
+
+       if ($type === 'button') {
+           $classes = 'inline-flex items-center text-md hover:bg-purple-700 bg-purple-500 text-white px-3 py-1 rounded-md transition-colors duration-300 ease-in-out font-bold';
+       }
 @endphp
 
-<a {{ $attributes->merge(['class' => $classes]) }}>
+<a wire:navigate {{ $attributes->merge(['class' => $classes]) }}>
     {{ $slot }}
 </a>

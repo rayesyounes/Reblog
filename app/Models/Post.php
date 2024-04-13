@@ -10,6 +10,18 @@ class Post extends Model
 {
     use HasFactory;
 
+    protected function casts(): array
+    {
+        return [
+            'published_at' => 'datetime',
+        ];
+    }
+
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
     public function scopePublished($query)
     {
         return $query->where('published_at', '<=', Carbon::now());
