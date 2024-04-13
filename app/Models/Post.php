@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 class Post extends Model
 {
@@ -30,5 +31,16 @@ class Post extends Model
     public function scopeFeatured($query)
     {
         return $query->where('featured', true);
+    }
+
+    public function getReadTime()
+    {
+        $wordCount = str_word_count(strip_tags($this->body));
+        return ceil($wordCount / 170);
+    }
+
+    public function getExcerpt()
+    {
+        return Str::limit(strip_tags($this->body), 160);
     }
 }
