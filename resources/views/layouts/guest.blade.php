@@ -15,11 +15,13 @@
 
 
 
-@include('layouts.parts.header')
-<main class="container mx-auto px-5 flex flex-grow">
+{{--@include('layouts.parts.header')--}}
+
+<main class=" w-full px-5 flex flex-grow bg-purple-500">
     {{$slot}}
 </main>
-@include('layouts.parts.footer')
+
+{{--@include('layouts.parts.footer')--}}
 
 </body>
 

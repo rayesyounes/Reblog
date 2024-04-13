@@ -16,9 +16,13 @@
 <x-banner/>
 
 @include('layouts.parts.header')
+
+@yield('hero')
+
 <main class="container mx-auto px-5 flex flex-grow">
     {{$slot}}
 </main>
+
 @include('layouts.parts.footer')
 
 </body>
