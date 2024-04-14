@@ -2,7 +2,7 @@
 <div>
     <a href="#">
         <div>
-            <img class="w-full rounded-xl" src="{{ $post->image }}" alt="{{ $post->image }}">
+            <img class="w-full rounded-xl" src="{{ $post->getThumbnail() }}" alt="{{ $post->image }}">
         </div>
     </a>
     <div class="mt-3">
