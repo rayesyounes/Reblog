@@ -9,7 +9,7 @@
     'green' => 'text-green-600',
     'red' => 'text-red-600',
     'blue' => 'text-blue-600',
-    'yellow' => 'text-yellow-600',
+    'yellow' => 'text-yellow-400',
     'indigo' => 'text-indigo-600',
     'pink' => 'text-pink-600',
     'teal' => 'text-teal-600',
@@ -33,13 +33,13 @@
     'white' => 'bg-white',
     'black' => 'bg-black',
     'gray' => 'bg-gray-800',
-    'purple' => 'bg-purple-600',
+    'purple' => 'bg-purple-400',
     'green' => 'bg-green-600',
-    'red' => 'bg-red-600',
+    'red' => 'bg-red-500',
     'blue' => 'bg-blue-600',
     'yellow' => 'bg-yellow-400',
     'indigo' => 'bg-indigo-600',
-    'pink' => 'bg-pink-600',
+    'pink' => 'bg-pink-400',
     'teal' => 'bg-teal-600',
     'orange' => 'bg-orange-600',
     'cyan' => 'bg-cyan-600',
@@ -59,6 +59,6 @@
 @endphp
 
 <button {{ $attributes }}
-   class=" {{$bgColor}} {{$textColor}} rounded-xl px-3 py-1 bold mr-2 mb-2 ">
+   class=" {{$bgColor}} {{$textColor}} rounded-xl px-3 py-0.5 bold mr-2 ">
     {{ $slot }}
 </button>

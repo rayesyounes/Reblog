@@ -15,4 +15,11 @@ class PostController extends Controller
                 $query->published();
             })->take(10)->get()]);
     }
+
+    public function show(Post $post)
+    {
+        return view('posts.show', [
+            'post' => $post,
+        ]);
+    }
 }

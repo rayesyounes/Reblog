@@ -76,4 +76,9 @@ class Post extends Model
 
         return $thumbnail;
     }
+
+    public function likes()
+    {
+        return $this->belongsToMany(User::class, 'post_like')->withTimestamps();
+    }
 }
