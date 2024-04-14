@@ -5,6 +5,13 @@
                 <span class="font-bold text-purple-500">Searching for:</span> "{{ $search }}"
                 <span class="text-purple-500">({{ $this->posts->total() }} {{ Str::plural('post', $this->posts->total()) }} found)</span>
             @endif
+            @if($this->activeCategory)
+                <span class="font-bold text-purple-500">Category:</span> {{ $this->activeCategory->title }}
+                <span class="text-purple-500">({{ $this->posts->total() }} {{ Str::plural('post', $this->posts->total()) }} found)</span>
+            @endif
+            @if($this->activeCategory || $search)
+                <button class="text-gray-600" wire:click="resetFilters">Reset</button>
+            @endif
         </div>
 
         <div class="flex items-center space-x-4 font-light ">

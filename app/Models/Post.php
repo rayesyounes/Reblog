@@ -50,6 +50,13 @@ class Post extends Model
         return $query->where('featured', true);
     }
 
+    public function scopeWithCategory($query, string $category)
+    {
+        $query->whereHas('categories', function ($query) use ($category) {
+            $query->where('slug', $category);
+        });
+    }
+
     public function getReadTime()
     {
         $wordCount = str_word_count(strip_tags($this->body));
