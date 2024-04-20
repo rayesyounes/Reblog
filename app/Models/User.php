@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -10,7 +11,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser
 {
     use HasApiTokens;
     use HasFactory;
@@ -23,10 +24,38 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+    public function isAdministrator(): bool
+    {
+        return $this->role === self::ADMIN_ROLE;
+    }
+
+    public function isEditor(): bool
+    {
+        return $this->role === self::EDITOR_ROLE;
+    }
+
+    public function canAccessPanel(\Filament\Panel $panel): bool
+    {
+        return $this->can("access-dashboard",User::class);
+    }
+
+    const ADMIN_ROLE = 'Admin';
+    const USER_ROLE = 'User';
+    const EDITOR_ROLE = 'Editor';
+
+    const ROLES = [
+        self::ADMIN_ROLE => 'Admin',
+        self::USER_ROLE => 'User',
+        self::EDITOR_ROLE => 'Editor',
+    ];
+
+
     protected $fillable = [
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
