@@ -9,11 +9,14 @@
         <div class="flex items-center mb-2">
             <div>
                 @foreach($post->categories as $category)
-                    <x-posts.category-badge :category="$category"/>
+                    @if ( $category = $post->categories->first() )
+                        <x-posts.category-badge :category="$category"/>
+                    @endif
                 @endforeach
             </div>
             <p class="text-gray-500 text-sm">{{ $post->published_at }}</p>
         </div>
-        <a wire:navigate href="{{ route('posts.show', $post->slug) }}" class="text-xl font-bold text-gray-900">{{ $post->title }}</a>
+        <a wire:navigate href="{{ route('posts.show', $post->slug) }}"
+           class="text-xl font-bold text-gray-900">{{ $post->title }}</a>
     </div>
 </div>

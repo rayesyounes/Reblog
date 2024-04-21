@@ -61,7 +61,8 @@ class UserResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email_verified_at')
                     ->dateTime()
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
 //                Tables\Columns\TextColumn::make('two_factor_confirmed_at')
 //                    ->dateTime()
 //                    ->sortable(),
@@ -79,7 +80,9 @@ class UserResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('role')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
+
             ])
             ->filters([
                 //

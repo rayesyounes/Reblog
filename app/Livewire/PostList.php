@@ -27,7 +27,7 @@ class PostList extends Component
 
     public function setSort($sort)
     {
-        $this->sort = ($sort === "desc") ? "desc" : "asc";
+        $this->sort = $sort;
     }
 
     #[On('search')]
@@ -41,17 +41,26 @@ class PostList extends Component
     public function posts()
     {
         return Post::published()
-            ->orderBy('published_at', $this->sort)
+            ->with('author', 'categories')
             ->when($this->activeCategory, function ($query) {
                 $query->withCategory($this->category);
             })
+            ->when($this->sort, function ($query) {
+                $query->withCount('likes')
+                    ->orderBy('likes_count', 'desc');
+            })
             ->where('title', 'like', '%' . $this->search . '%')
+            ->orderBy('published_at', $this->sort === 'desc' ? 'desc' : 'asc')
             ->paginate(5);
     }
 
     #[Computed()]
     public function activeCategory()
     {
+        if ($this->category === null || $this->category === '') {
+            return null;
+        }
+
         return Category::where('slug', $this->category)->first();
     }
 

@@ -68,10 +68,17 @@ class CategoryResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('title')->sortable()->searchable(),
-                TextColumn::make('slug')->sortable()->searchable(),
-                TextColumn::make('text_color')->sortable()->searchable(),
-                TextColumn::make('bg_color')->sortable()->searchable(),
+                TextColumn::make('title')
+                    ->sortable()->searchable(),
+                TextColumn::make('slug')
+                    ->sortable()->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('text_color')
+                    ->sortable()->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('bg_color')
+                    ->sortable()->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
 
             ])
             ->filters([

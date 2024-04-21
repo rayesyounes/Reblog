@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\PostResource\Pages;
 use App\Filament\Resources\PostResource\RelationManagers;
+use App\Filament\Resources\PostResource\RelationManagers\CommentsRelationManager;
 use App\Models\Post;
 use Filament\Forms;
 use Filament\Forms\Components\Checkbox;
@@ -84,20 +85,23 @@ class PostResource extends Resource
     {
         return $table
             ->columns([
-                ImageColumn::make('image'),
+                ImageColumn::make('image')
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('title')
                     ->sortable()
                     ->searchable(),
                 TextColumn::make('slug')
                     ->sortable()
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('author.name')
                     ->sortable()
                     ->searchable(),
                 TextColumn::make('published_at')
                     ->date('Y-m-d')
                     ->sortable()->searchable(),
-                CheckboxColumn::make('featured'),
+                CheckboxColumn::make('featured')
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
@@ -117,7 +121,7 @@ class PostResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            CommentsRelationManager::class,
         ];
     }
 
