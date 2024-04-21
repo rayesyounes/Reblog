@@ -1,9 +1,11 @@
 <div class=" px-3 lg:px-7 py-6">
     <div class="flex justify-between items-center border-b border-gray-100">
-        <div class="flex items-center space-x-4 font-light ">
-            <button class="{{$sort === "desc" ? "text-gray-900 border-b border-gray-700" : "text-gray-500"}} py-4" wire:click="setSort('desc')">Latest</button>
-            <button class="{{$sort === "asc" ? "text-gray-900 border-b border-gray-700" : "text-gray-500"}} py-4" wire:click="setSort('asc')">Oldest</button>
+        <div class="flex items-center space-x-4 font-light">
+            <button class="transition-colors duration-300 ease-in-out {{$sort === "popular" ? "text-purple-900 border-b-2 border-purple-900" : "text-gray-500"}} py-2 px-4 hover:text-purple-900 hover:border-b-2 hover:border-purple-900 focus:outline-none" wire:click="setSort('popular')">Popular</button>
+            <button class="transition-colors duration-300 ease-in-out {{$sort === "desc" ? "text-purple-900 border-b-2 border-purple-900" : "text-gray-500"}} py-2 px-4 hover:text-purple-900 hover:border-b-2 hover:border-purple-900 focus:outline-none" wire:click="setSort('desc')">Latest</button>
+            <button class="transition-colors duration-300 ease-in-out {{$sort === "asc" ? "text-purple-900 border-b-2 border-purple-900" : "text-gray-500"}} py-2 px-4 hover:text-purple-900 hover:border-b-2 hover:border-purple-900 focus:outline-none" wire:click="setSort('asc')">Oldest</button>
         </div>
+
 
         <div class="flex items-center gap-2">
             @if ($search)
